@@ -53,4 +53,4 @@ while True:
 
     RPC.update(state = state, details = detail, large_image = 'echobig', large_text = 'Echo Arena', small_image = 'echosmall', small_text = 'Echo VR')
 
-    time.sleep(1)
+    time.sleep(15)
