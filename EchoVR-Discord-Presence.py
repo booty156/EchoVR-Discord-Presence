@@ -51,15 +51,12 @@ while True:
                 if (team['team']) == ('BLUE TEAM'):
                     for n in team['players']:
                         bluecount = bluecount + 1
+                    p = team['stats']
+                    bPoints = (str((p['points'])))
                 else:
                     for n in team['players']:
                         orangecount = orangecount + 1
-            for stats in response_object['teams']:
-                if (stats['team']) == ('BLUE TEAM'):
-                    p = stats['stats']
-                    bPoints = (str((p['points'])))
-                else:
-                    p = stats['stats']
+                    p = team['stats']
                     oPoints = (str(p['points']))
         except KeyError:
             bluecount = '0'
