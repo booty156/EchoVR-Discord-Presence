@@ -18,6 +18,8 @@ Download and run exe
 
 [Releases](https://github.com/booty156/EchoVR-Discord-Presence/releases)
 
+Make sure echovr.exe is running with the '-http' tag
+
 ## Known Issues
 
 Time and score may be delayed, as discord will update every 15 secs.
