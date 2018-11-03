@@ -40,21 +40,21 @@ while True:
 
         try:
             for team in response_object['teams']:
-                if (team['team']) == ('BLUE TEAM'):
+                if team['team'] == 'BLUE TEAM':
                     for _player in team['players']:
                         blue_team_size = blue_team_size + 1
                     stats = team['stats']
-                    blue_points = (str((stats['points'])))
+                    blue_points = stats['points']
                 else:
                     for _player in team['players']:
                         orange_team_size = orange_team_size + 1
                     stats = team['stats']
-                    orange_points = (str(stats['points']))
+                    orange_points = stats['points']
         except KeyError:
-            blue_team_size = '0'
-            orange_team_size = '0'
-            orange_points = '0'
-            blue_points = '0'
+            blue_team_size = 0
+            orange_team_size = 0
+            orange_points = 0
+            blue_points = 0
 
         RPC.update(
             details = f"In Arena | {orange_points} - {blue_points} | {clock}",
@@ -65,7 +65,7 @@ while True:
             small_text = 'Echo VR')
 
     except NameError:
-        print ('Lobby')
+        print('Lobby')
         RPC.update(
             state = 'In Lobby',
             large_image = 'echobig',
