@@ -3,6 +3,8 @@ import time
 import requests
 import json
 
+epoch  = round(time.time())
+
 client_id = "500359009375748117"
 
 RPC = Presence(client_id)
@@ -63,10 +65,10 @@ while True:
     except:
         print('Lobby')
         RPC.update(
-            state = 'In Lobby',
+            state = 'In Lobby | Matchmaking',
             large_image = 'echobig',
             large_text = 'Echo Arena',
             small_image = 'echosmall',
-            small_text = 'Echo VR')
-
+            small_text = 'Echo VR',
+            start = epoch)       
     time.sleep(10)
