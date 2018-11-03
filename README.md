@@ -28,4 +28,4 @@ Cannot tell the difference between public matches and private matches. - Waiting
 
 Cannot tell the difference between Arena matches and Combat matches. - Waiting on API update for this
 
-Being in a priavte on your own will show 0-0 for amount of players playing and scores.
+Being in a private on your own will show 0-0 for amount of players playing and scores.
