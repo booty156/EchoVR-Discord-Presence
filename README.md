@@ -18,7 +18,13 @@ Download and run exe
 
 [Releases](https://github.com/booty156/EchoVR-Discord-Presence/releases)
 
-Make sure echovr.exe is running with the '-http' tag
+Open and edit these files
+	C:\Program Files\Oculus\Software\Manifests\ready-at-dawn-echo-arena.json
+	C:\Program Files\Oculus\Software\Manifests\ready-at-dawn-echo-arena.json.mini
+	
+Edit the line:	"launchParameters": null,
+
+And replace with:	"launchParameters": -http,
 
 ## Known Issues
 
