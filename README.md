@@ -18,9 +18,11 @@ Download and run exe
 
 [Releases](https://github.com/booty156/EchoVR-Discord-Presence/releases)
 
-Open and edit these files
-	C:\Program Files\Oculus\Software\Manifests\ready-at-dawn-echo-arena.json
-	C:\Program Files\Oculus\Software\Manifests\ready-at-dawn-echo-arena.json.mini
+Open and edit these files:
+
+		C:\Program Files\Oculus\Software\Manifests\ready-at-dawn-echo-arena.json
+		
+		C:\Program Files\Oculus\Software\Manifests\ready-at-dawn-echo-arena.json.mini
 	
 Edit the line:	"launchParameters": null,
 
