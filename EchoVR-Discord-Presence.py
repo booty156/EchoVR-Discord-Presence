@@ -41,15 +41,11 @@ while True:
         try:
             for team in response_object['teams']:
                 if team['team'] == 'BLUE TEAM':
-                    for _player in team['players']:
-                        blue_team_size = blue_team_size + 1
-                    stats = team['stats']
-                    blue_points = stats['points']
+                    blue_team_size = len(team['players'])
+                    blue_points = team['stats']['points']
                 else:
-                    for _player in team['players']:
-                        orange_team_size = orange_team_size + 1
-                    stats = team['stats']
-                    orange_points = stats['points']
+                    orange_team_size = len(team['players'])
+                    orange_points = team['stats']['points']
         except KeyError:
             blue_team_size = 0
             orange_team_size = 0
