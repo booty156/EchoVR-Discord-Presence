@@ -35,7 +35,7 @@ while True:
         print(game_status)
 
         game_status_description = GAME_STATUS_DESCRIPTIONS.get(game_status, '')
-        if game_status in ['pre_match', 'post_match']:
+        if game_status in ['round_over', 'post_match']:
             clock = '00:00.00'
 
         try:
@@ -60,7 +60,7 @@ while True:
             small_image = 'echosmall',
             small_text = 'Echo VR')
 
-    except NameError:
+    except:
         print('Lobby')
         RPC.update(
             state = 'In Lobby',
