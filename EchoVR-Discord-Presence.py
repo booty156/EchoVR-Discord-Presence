@@ -21,8 +21,8 @@ GAME_STATUS_DESCRIPTIONS = {
 }
 
 while True:
-    bluecount = 0
-    orangecount = 0
+    blue_team_size = 0
+    orange_team_size = 0
     try:
         response = requests.get('http://127.0.0.1/session')
         response_text = response.text.rstrip('\0')
@@ -31,33 +31,33 @@ while True:
         clock = response_object['game_clock_display']
         print(clock)
 
-        game_state = response_object['game_status']
-        print(game_state)
+        game_status = response_object['game_status']
+        print(game_status)
 
-        game_status_description = GAME_STATUS_DESCRIPTIONS.get(game_state, '')
-        if game_state in ['pre_match', 'post_match']:
+        game_status_description = GAME_STATUS_DESCRIPTIONS.get(game_status, '')
+        if game_status in ['pre_match', 'post_match']:
             clock = '00:00.00'
 
         try:
             for team in response_object['teams']:
                 if (team['team']) == ('BLUE TEAM'):
-                    for n in team['players']:
-                        bluecount = bluecount + 1
-                    p = team['stats']
-                    bPoints = (str((p['points'])))
+                    for _player in team['players']:
+                        blue_team_size = blue_team_size + 1
+                    stats = team['stats']
+                    blue_points = (str((stats['points'])))
                 else:
-                    for n in team['players']:
-                        orangecount = orangecount + 1
-                    p = team['stats']
-                    oPoints = (str(p['points']))
+                    for _player in team['players']:
+                        orange_team_size = orange_team_size + 1
+                    stats = team['stats']
+                    orange_points = (str(stats['points']))
         except KeyError:
-            bluecount = '0'
-            orangecount = '0'
-            oPoints = '0'
-            bPoints = '0'
+            blue_team_size = '0'
+            orange_team_size = '0'
+            orange_points = '0'
+            blue_points = '0'
 
-        state = ('Playing Pubs | ') + str(orangecount) + ('v') + str(bluecount) + (' | ') + (game_status_description)
-        detail = ('In Arena | ') + (oPoints) + '-' + (bPoints) + ' | ' + (clock)
+        state = ('Playing Pubs | ') + str(orange_team_size) + ('v') + str(blue_team_size) + (' | ') + (game_status_description)
+        detail = ('In Arena | ') + (orange_points) + '-' + (blue_points) + ' | ' + (clock)
 
         RPC.update(state = state, details = detail, large_image = 'echobig', large_text = 'Echo Arena', small_image = 'echosmall', small_text = 'Echo VR')
 
