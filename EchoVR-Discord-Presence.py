@@ -8,75 +8,65 @@ client_id = "500359009375748117"
 RPC = Presence(client_id)
 RPC.connect()
 
+GAME_STATUS_DESCRIPTIONS = {
+  'pre_match': 'Pre Match',
+  'round_start': 'Round Starting',
+  'playing': 'Playing',
+  'score': 'Team Scored',
+  'round_over': 'Round Over',
+  'pre_sudden_death': 'Pre Sudden Death',
+  'sudden_death': 'Playing Sudden Death',
+  'post_sudden_death': 'Post Sudden Death',
+  'post_match': 'Game Over',
+}
+
 while True:
-    bluecount = 0
-    orangecount = 0
+    blue_team_size = 0
+    orange_team_size = 0
     try:
         response = requests.get('http://127.0.0.1/session')
         response_text = response.text.rstrip('\0')
         response_object = json.loads(response_text)
 
-        for clock in [response_object['game_clock_display']]:
-            print (clock)
-            clock = clock
+        clock = response_object['game_clock_display']
+        print(clock)
 
-        for game_state in [response_object['game_status']]:
-            print (game_state)
-            if game_state == 'pre_match':
-                game_state = 'Pre Match'
-                clock = '00:00.00'            
-            elif game_state == 'round_start':
-                game_state = 'Round Starting'            
-            elif game_state == 'playing':
-                game_state = 'Playing'           
-            elif game_state == 'score':
-                game_state = 'Team Scored'               
-            elif game_state == 'round_over':
-                game_state = 'Round Over'                
-            elif game_state == 'pre_sudden_death':
-                game_state = 'Pre Sudden Death'          
-            elif game_state == 'sudden_death':
-                game_state = 'Playing Sudden Death'            
-            elif game_state == 'post_sudden_death':
-                game_state = 'Post Sudden Death'            
-            elif game_state == 'post_match':
-                clock = '00:00.00'
-                game_state = 'Game Over'
-            else:
-                clock = clock
-                game_state = ''
-                
+        game_status = response_object['game_status']
+        print(game_status)
+
+        game_status_description = GAME_STATUS_DESCRIPTIONS.get(game_status, '')
+        if game_status in ['pre_match', 'post_match']:
+            clock = '00:00.00'
+
         try:
             for team in response_object['teams']:
-                if (team['team']) == ('BLUE TEAM'):
-                    for n in team['players']:
-                        bluecount = bluecount + 1
+                if team['team'] == 'BLUE TEAM':
+                    blue_team_size = len(team['players'])
+                    blue_points = team['stats']['points']
                 else:
-                    for n in team['players']:
-                        orangecount = orangecount + 1
-            for stats in response_object['teams']:               
-                if (stats['team']) == ('BLUE TEAM'):
-                    for p in [stats['stats']]:
-                        bPoints = (str((p['points'])))
-                else:
-                    for p in [stats['stats']]:
-                        oPoints = (str(p['points']))
+                    orange_team_size = len(team['players'])
+                    orange_points = team['stats']['points']
         except KeyError:
-            bluecount = '0'
-            orangecount = '0'
-            oPoints = '0'
-            bPoints = '0'
-            
-        GameState = (game_state)
-        
-        state = ('Playing Pubs | ') + str(orangecount) + ('v') + str(bluecount) + (' | ') + (GameState)
-        detail = ('In Arena | ') + (oPoints) + '-' + (bPoints) + ' | ' + (clock)
+            blue_team_size = 0
+            orange_team_size = 0
+            orange_points = 0
+            blue_points = 0
 
-        RPC.update(state = state, details = detail, large_image = 'echobig', large_text = 'Echo Arena', small_image = 'echosmall', small_text = 'Echo VR')
+        RPC.update(
+            details = f"In Arena | {orange_points} - {blue_points} | {clock}",
+            state = f"Playing Pubs | {orange_team_size}v{blue_team_size} | {game_status_description}",
+            large_image = 'echobig',
+            large_text = 'Echo Arena',
+            small_image = 'echosmall',
+            small_text = 'Echo VR')
 
     except NameError:
-        print ('Lobby')
-        RPC.update(state = 'In Lobby', large_image = 'echobig', large_text = 'Echo Arena', small_image = 'echosmall', small_text = 'Echo VR')
+        print('Lobby')
+        RPC.update(
+            state = 'In Lobby',
+            large_image = 'echobig',
+            large_text = 'Echo Arena',
+            small_image = 'echosmall',
+            small_text = 'Echo VR')
 
     time.sleep(10)
-
