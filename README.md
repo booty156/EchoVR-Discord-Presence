@@ -34,18 +34,18 @@ Being in a private on your own will show 0-0 for amount of players playing and s
 
 Support for Combat, when released:
 
-  Changes main image to combat
+	  Changes main image to combat
   
-  Displays 'PLaying Arena' For Echo Arena or 'Playing Combat' For Echo Combat
+ 	 Displays 'PLaying Arena' For Echo Arena or 'Playing Combat' For Echo Combat
   
 Private Support:
 
-  Shows, 'Playing Private'. When in a private
+	  Shows, 'Playing Private'. When in a private
   
-  Score and points, for when you're in a private, on your own.
+ 	 Score and points, for when you're in a private, on your own.
   
 Bug Fixes
 
-.dll file, to be put in EchoVR directioary and will start when EchoVR.exe is ran
+	.dll file, to be put in EchoVR directioary and will start when EchoVR.exe is ran
 
   
