@@ -56,13 +56,21 @@ while True:
             orange_points = '0'
             blue_points = '0'
 
-        state = ('Playing Pubs | ') + str(orange_team_size) + ('v') + str(blue_team_size) + (' | ') + (game_status_description)
-        detail = ('In Arena | ') + (orange_points) + '-' + (blue_points) + ' | ' + (clock)
-
-        RPC.update(state = state, details = detail, large_image = 'echobig', large_text = 'Echo Arena', small_image = 'echosmall', small_text = 'Echo VR')
+        RPC.update(
+            details = f"In Arena | {orange_points} - {blue_points} | {clock}",
+            state = f"Playing Pubs | {orange_team_size}v{blue_team_size} | {game_status_description}",
+            large_image = 'echobig',
+            large_text = 'Echo Arena',
+            small_image = 'echosmall',
+            small_text = 'Echo VR')
 
     except NameError:
         print ('Lobby')
-        RPC.update(state = 'In Lobby', large_image = 'echobig', large_text = 'Echo Arena', small_image = 'echosmall', small_text = 'Echo VR')
+        RPC.update(
+            state = 'In Lobby',
+            large_image = 'echobig',
+            large_text = 'Echo Arena',
+            small_image = 'echosmall',
+            small_text = 'Echo VR')
 
     time.sleep(10)
