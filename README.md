@@ -20,9 +20,9 @@ Download and run exe
 
 Open and edit these files:
 
-		C:\Program Files\Oculus\Software\Manifests\ready-at-dawn-echo-arena.json
+	C:\Program Files\Oculus\Software\Manifests\ready-at-dawn-echo-arena.json
 		
-		C:\Program Files\Oculus\Software\Manifests\ready-at-dawn-echo-arena.json.mini
+	C:\Program Files\Oculus\Software\Manifests\ready-at-dawn-echo-arena.json.mini
 	
 Edit the line:	"launchParameters": null,
 
