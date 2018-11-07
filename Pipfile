@@ -5,7 +5,7 @@ name = "pypi"
 
 [packages]
 pypresence = "*"
-requests = "*"
+echovr-api = "*"
 
 [dev-packages]
 
